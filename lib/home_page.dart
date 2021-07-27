@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projetos_android/pages/hello_listview.dart';
 import 'package:projetos_android/pages/hello_page1.dart';
 import 'package:projetos_android/pages/hello_page2.dart';
 import 'package:projetos_android/pages/hello_page3.dart';
@@ -54,7 +55,7 @@ class HomePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget> [
-                BlueButton("ListView", () => _onClickNavigator(context, HelloPage1())),
+                BlueButton("ListView", () => _onClickNavigator(context, HelloListView())),
                 BlueButton("Page 2", () => _onClickNavigator(context, HelloPage2())),
                 BlueButton("Page 3", () => _onClickNavigator(context, HelloPage3())),
               ],
