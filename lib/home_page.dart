@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projetos_android/pages/hello_page1.dart';
+import 'package:projetos_android/pages/hello_page2.dart';
+import 'package:projetos_android/pages/hello_page3.dart';
+import 'package:projetos_android/widgets/blue_button.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -50,21 +53,33 @@ class HomePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget> [
-                _button(context, "ListView"),
-                _button(context, "Page 2"),
-                _button(context, "Page 3"),
+                BlueButton("ListView", () => _onClickNavigator(context, HelloPage1())),
+                BlueButton("Page 2", () => _onClickNavigator(context, HelloPage2())),
+                BlueButton("Page 3", () => _onClickNavigator(context, HelloPage3())),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget> [
-                _button(context, "Snack"),
-                _button(context, "Dialog"),
-                _button(context, "Toast"),
+                BlueButton("Snack", _onClickSnack),
+                BlueButton("Dialog", _onClickDialog),
+                BlueButton("Toast", _onClickToast),
               ],
             ),
           ],
         );
+  }
+
+  _onClickSnack() {
+
+  }
+
+  _onClickDialog() {
+
+  }
+
+  _onClickToast() {
+
   }
 
   _text() {
@@ -82,26 +97,11 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  _button(BuildContext context, String text) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        primary: Colors.blue,
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 20,
-        ),
-      ),
-      onPressed: () => _onClickOK(context),
-    );
-  }
-
-  void _onClickOK(BuildContext context) {
-      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-        return HelloPage1();
+  void _onClickNavigator(BuildContext context, Widget page) async {
+      String s = await Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+        return page;
       }));
+      print(">> $s");
   }
 
   _img(img) {
